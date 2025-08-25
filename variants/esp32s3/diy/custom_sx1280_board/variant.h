@@ -2,8 +2,8 @@
 // ESP32-S3 with SX1280 LoRa module
 // Designed for LORA_24 (2400-2483.5 MHz) operation
 
-// Fix Serial definition for ESP32-S3
-#define Serial Serial0
+// Serial is already defined for ESP32-S3 USB CDC
+// No need to redefine
 
 // Disable features not present on this board
 #define HAS_GPS 0
@@ -13,18 +13,19 @@
 // No display on this board
 #define HAS_SCREEN 0
 
-// I2C configuration (standard ESP32-S3 pins)
-#define I2C_SDA 8
-#define I2C_SCL 9
+// I2C configuration - disable for now to avoid conflicts
+#undef I2C_SDA
+#undef I2C_SCL
+#define HAS_WIRE 0
 
-// Multiple LED configuration for status indication
+// LED configuration - all 5 LEDs from original design
 #define LED_PIN 35          // Primary status LED
 #define LED_PIN_2 36        // Secondary LED
 #define LED_PIN_3 37        // Third LED  
 #define LED_PIN_4 38        // Fourth LED
 #define LED_PIN_5 7         // Fifth LED
 
-// Button configuration (using boot button)
+// Button configuration - using boot button
 #define BUTTON_PIN 0
 #define BUTTON_NEED_PULLUP
 
